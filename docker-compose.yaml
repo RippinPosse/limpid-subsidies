@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  app:
+    build: ./app
+    env_file:
+      - ./.env
+    ports:
+      - ${APP_PORT}:${APP_PORT}
+
+  client:
+    build: ./frontend
+    env_file:
+      - ./.env
+    ports:
+      -  ${CLIENT_PORT}:${CLIENT_PORT}
+
+  pg:
+    image: postgres
+    env_file:
+      - .env
+    volumes:
+      - database-data:/var/lib/fs/postgresql/data/
+    ports:
+      - ${POSTGRES_PORT}:${POSTGRES_PORT}
+
+volumes:
+  database-data:
