@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "express": "^4.17.1",
-    "web3": "^1.5.3"
-  }
-}

@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "express": "^4.17.1",
+    "node-pg-migrate": "^6.0.0",
+    "pg": "^8.7.1",
+    "web3": "^1.5.3"
+  },
+  "scripts": {
+    "migrate": "./node_modules/.bin/node-pg-migrate"
+  }
+}

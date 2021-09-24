@@ -1,24 +1,28 @@
 version: '3.8'
 
 services:
-  app:
-    build: ./app
+  api:
+    build: ./api
+    command: node app
     env_file:
       - ./.env
+      - ./api/.env
     ports:
       - ${APP_PORT}:${APP_PORT}
+    depends_on:
+      - pg
 
   client:
     build: ./frontend
     env_file:
       - ./.env
     ports:
-      -  ${CLIENT_PORT}:${CLIENT_PORT}
+      - ${CLIENT_PORT}:${CLIENT_PORT}
 
   pg:
     image: postgres
     env_file:
-      - .env
+      - ./.env
     volumes:
       - database-data:/var/lib/fs/postgresql/data/
     ports:
