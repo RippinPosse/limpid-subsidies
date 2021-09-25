@@ -13,7 +13,7 @@ const up = async (pgm) => {
 
   pgm.createTable("applications", {
     id: "id",
-    userId: {
+    user_id: {
       type: "integer",
       notNull: true,
       references: "users",
@@ -22,8 +22,18 @@ const up = async (pgm) => {
     address: { type: "varchar(256)", notNull: true },
     public: { type: "boolean", default: "true" },
   });
+  pgm.createIndex("applications", "user_id");
 
-  pgm.createIndex("applications", "userId");
+  pgm.createTable("documents", {
+    id: "id",
+    user_id: {
+      type: "integer",
+      notNull: true,
+      references: "users",
+      onDelete: "cascade",
+    },
+    name: { type: "varchar(256)", notNull: true },
+  });
 };
 
 exports.up = up;

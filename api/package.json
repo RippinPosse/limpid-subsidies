@@ -7,7 +7,9 @@
     "jsonwebtoken": "^8.5.1",
     "node-pg-migrate": "^6.0.0",
     "pg": "^8.7.1",
-    "web3": "^1.5.3"
+    "pg-format": "^1.0.4",
+    "web3": "^1.5.3",
+    "web3-providers-http": "^1.5.3"
   },
   "scripts": {
     "migrate": "./node_modules/.bin/node-pg-migrate"

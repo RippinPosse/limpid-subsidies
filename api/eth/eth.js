@@ -11,4 +11,7 @@ const createAccount = () => {
   }
 };
 
+module.exports = {
+  web3,
+};
 module.exports.createAccount = createAccount;

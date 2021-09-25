@@ -17,6 +17,7 @@ struct Document {
 
 struct ApplicationInput {
         string subsidy;
+        uint number;
         Document[] documents;
 }
 
@@ -28,20 +29,24 @@ contract Application {
     );
 
     address applicant;
+    uint number;
     Status currentStatus;
 
     mapping(uint => Document) public documents;
     Document[] documentsList;
 
-    constructor(ApplicationInput  memory input) {
+    constructor(ApplicationInput memory input) {
             applicant = msg.sender;
+            number = input.number;
 
             for (uint i = 0; i < input.documents.length; i++) {
                     Document memory doc = input.documents[i];
+                    doc.status = Status.Pending;
                     documents[doc.id] = doc;
+                    documentsList.push(doc);
             }
 
-            emit Update(input.documents, msgAddApplication, Status.Pending);
+            emit Update(documentsList, msgAddApplication, Status.Pending);
 
             currentStatus = Status.Pending;
     }
