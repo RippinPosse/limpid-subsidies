@@ -9,6 +9,11 @@ enum Status {
         Declined
 }
 
+enum Participant {
+        Applicant,
+        Provider
+}
+
 struct Document {
         uint id;
         string name;
@@ -35,8 +40,11 @@ contract Application {
     mapping(uint => Document) public documents;
     Document[] documentsList;
 
-    constructor(ApplicationInput memory input) {
-            applicant = msg.sender;
+    constructor() {
+        applicant = msg.sender;
+    }
+
+    function start(ApplicationInput memory input) public {
             number = input.number;
 
             for (uint i = 0; i < input.documents.length; i++) {
@@ -50,8 +58,6 @@ contract Application {
 
             currentStatus = Status.Pending;
     }
-
-        
 }
 
 string constant msgAddApplication = "application pushed to network";

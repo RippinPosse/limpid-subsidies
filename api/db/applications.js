@@ -3,7 +3,7 @@ const db = require("./db");
 const save = async (application) => {
   try {
     const query = {
-      text: "INSERT INTO applications (user_id, address) VALUES ($1, $2, $3) RETURNING *",
+      text: "INSERT INTO applications (user_id, address, public) VALUES ($1, $2, $3) RETURNING *",
       values: [application.user_id, application.address, application.public],
     };
 

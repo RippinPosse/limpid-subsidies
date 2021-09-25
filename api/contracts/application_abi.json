@@ -1,46 +1,6 @@
 [
 	{
-		"inputs": [
-			{
-				"components": [
-					{
-						"internalType": "string",
-						"name": "subsidy",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "number",
-						"type": "uint256"
-					},
-					{
-						"components": [
-							{
-								"internalType": "uint256",
-								"name": "id",
-								"type": "uint256"
-							},
-							{
-								"internalType": "string",
-								"name": "name",
-								"type": "string"
-							},
-							{
-								"internalType": "enum Status",
-								"name": "status",
-								"type": "uint8"
-							}
-						],
-						"internalType": "struct Document[]",
-						"name": "documents",
-						"type": "tuple[]"
-					}
-				],
-				"internalType": "struct ApplicationInput",
-				"name": "input",
-				"type": "tuple"
-			}
-		],
+		"inputs": [],
 		"stateMutability": "nonpayable",
 		"type": "constructor"
 	},
@@ -113,6 +73,53 @@
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "subsidy",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "number",
+						"type": "uint256"
+					},
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "id",
+								"type": "uint256"
+							},
+							{
+								"internalType": "string",
+								"name": "name",
+								"type": "string"
+							},
+							{
+								"internalType": "enum Status",
+								"name": "status",
+								"type": "uint8"
+							}
+						],
+						"internalType": "struct Document[]",
+						"name": "documents",
+						"type": "tuple[]"
+					}
+				],
+				"internalType": "struct ApplicationInput",
+				"name": "input",
+				"type": "tuple"
+			}
+		],
+		"name": "start",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	}
 ]

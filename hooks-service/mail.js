@@ -16,11 +16,11 @@ const sendUpdateNotification = async (user) => {
       from: '"Прозрачные субсидии" <noreply@vote.com>',
       to: user,
       subject: "Обновление по заявке!",
-      text: "Заявка №... обнолена",
+      text: "Заявка №... обновлена",
     });
   } catch (error) {
     throw new Error("send mail: " + error);
   }
 };
 
-module.exports = sendVoteNotification;
+module.exports = sendUpdateNotification;

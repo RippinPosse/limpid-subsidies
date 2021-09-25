@@ -6,6 +6,7 @@ const auth = require("../middleware/auth");
 const Users = require("../db/users");
 const Applications = require("../db/applications");
 const Documents = require("../db/documents");
+const { web3 } = require("../eth/eth");
 
 const router = express.Router();
 
@@ -51,25 +52,36 @@ router.route("/new").post(auth, async (req, res) => {
       });
     });
 
-    const input = {
-      subsidy: "Субсидия №" + id,
-      number: id,
-      documents: docs,
-    };
-
-    const address = await ethApplications.create(user.address, input);
+    const address = await ethApplications.create(
+      user.address,
+      user.private_key
+    );
 
     const application = {
       user_id: user.id,
       address: address,
       public: req.body.input.public,
     };
-
     const savedApplication = await Applications.save(application);
 
-    return res
-      .status(200)
-      .json({ id: savedApplication.id, address: savedApplication.address });
+    const input = {
+      subsidy: "Subsidy №" + id,
+      number: id,
+      documents: docs,
+    };
+
+    const tx = await ethApplications.start(
+      savedApplication.address,
+      user.address,
+      user.private_key,
+      input
+    );
+
+    return res.status(200).json({
+      id: savedApplication.id,
+      address: savedApplication.address,
+      tx: tx,
+    });
   } catch (error) {
     throw new Error("get account: " + error);
   }

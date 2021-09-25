@@ -2,6 +2,10 @@ const Web3 = require("web3");
 
 const web3 = new Web3(new Web3.providers.HttpProvider(process.env.ETH_URL));
 
+web3.eth
+  .getBalance("0x9C82ECfcce575A2AED70b203Da009e4d50F77DBc")
+  .then(console.log);
+
 const createAccount = () => {
   try {
     const account = web3.eth.accounts.create();

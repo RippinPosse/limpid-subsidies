@@ -28,9 +28,9 @@ app.post("/subscribe", async (req, res) => {
   const contract = new web3.eth.Contract(applicationContractABI, address);
 
   contract.events.Update({}).on("data", async () => {
-    webpush
-      .sendNotification(subscription, {})
-      .catch((err) => console.error(err));
+    webpush.sendNotification(subscription, {}).catch((err) => {
+      throw new Error("send notification: " + err);
+    });
   });
 });
 
