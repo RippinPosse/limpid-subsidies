@@ -8,7 +8,7 @@ services:
       - ./.env
       - ./api/.env
     ports:
-      - ${APP_PORT}:${APP_PORT}
+      - ${API_PORT}:${API_PORT}
     depends_on:
       - pg
 

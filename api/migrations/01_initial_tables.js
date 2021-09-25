@@ -8,7 +8,7 @@ const up = async (pgm) => {
     lastname: { type: "varchar(1000)", notNull: true },
     patronymic: { type: "varchar(1000)" },
     address: { type: "varchar(256)" },
-    privateKey: { type: "varchar(1000)" },
+    private_key: { type: "varchar(1000)" },
   });
 
   pgm.createTable("applications", {
