@@ -18,8 +18,14 @@ const findByEmail = async (email) => {
 const save = async (user) => {
   try {
     const query = {
-      text: "INSERT INTO users (email, password, firstname, lastname) VALUES ($1, $2, $3, $4)",
-      values: [user.email, user.password, user.firstname, user.lastname],
+      text: "INSERT INTO users (email, password, salt, firstname, lastname) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+      values: [
+        user.email,
+        user.password,
+        user.salt,
+        user.firstname,
+        user.lastname,
+      ],
     };
 
     const res = await db.query(query);

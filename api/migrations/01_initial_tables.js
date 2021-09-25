@@ -3,6 +3,7 @@ const up = async (pgm) => {
     id: "id",
     email: { type: "varchar(200)", notNull: true, unique: true },
     password: { type: "varchar(400)", notNull: true },
+    salt: { type: "varchar(50)", notNull: true },
     firstname: { type: "varchar(1000)", notNull: true },
     lastname: { type: "varchar(1000)", notNull: true },
     patronymic: { type: "varchar(1000)" },
