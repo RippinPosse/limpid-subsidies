@@ -11,7 +11,22 @@ const findByEmail = async (email) => {
 
     return res.rows[0];
   } catch (error) {
-    throw new Error("find user: " + error);
+    throw new Error("find user by email: " + error);
+  }
+};
+
+const findByAddress = async (address) => {
+  try {
+    const query = {
+      text: "SELECT * FROM users WHERE address = $1",
+      values: [address],
+    };
+
+    const res = await db.query(query);
+
+    return res.rows[0];
+  } catch (error) {
+    throw new Error("find user by address: " + address);
   }
 };
 
@@ -38,5 +53,6 @@ const save = async (user) => {
 
 module.exports = {
   findByEmail,
+  findByAddress,
   save,
 };

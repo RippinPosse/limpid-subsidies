@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "express": "^4.17.1",
+    "superagent": "^6.1.0",
+    "web-push": "^3.4.5",
+    "web3": "^1.5.3"
+  }
+}

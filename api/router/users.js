@@ -94,4 +94,23 @@ router.route("/login").post(async (req, res) => {
   }
 });
 
+router.route("/:address").get(async (req, res) => {
+  try {
+    const address = req.params.address;
+    const user = await userModel.findByAddress(address);
+    if (!user) {
+      return res.status(404).json({ message: "user not found" });
+    }
+
+    const res = {
+      email: user.email,
+      user: user.password,
+    };
+
+    return res;
+  } catch (error) {
+    throw new Error("get user");
+  }
+});
+
 module.exports = router;

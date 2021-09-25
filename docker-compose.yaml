@@ -12,6 +12,15 @@ services:
     depends_on:
       - pg
 
+  hooks:
+    build: ./hooks-service
+    env_file:
+      - ./.env
+    ports:
+      - ${HOOKS_PORT}:${HOOKS_PORT}
+    depends_on:
+      - pg
+
   client:
     build: ./frontend
     env_file:
