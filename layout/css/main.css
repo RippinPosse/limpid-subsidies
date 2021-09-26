@@ -207,6 +207,10 @@ h1 {
     border-radius: 10px;
 }
 
+.my__applications_big {
+    height: 300px;
+}
+
 .my__applications__flex{
     display: flex;
     justify-content: space-between;
@@ -297,6 +301,10 @@ h2{
 
 .all__applications:hover {
     background-color: rgba(173, 168, 182, 1);
+}
+
+.hide {
+    display: none;
 }
 
 .ellipse_red {
