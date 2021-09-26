@@ -52,15 +52,23 @@ html {
     box-sizing: inherit;
 }
 
+/* 
+--beige: #eff8e2ff;
+--timberwolf: #cecfc7ff;
+--silver-metallic: #ada8b6ff;
+--dark-purple: #23022eff;
+--spanish-violet: #573280ff;
+*/
+
 body {
-    background-color: #FAFAFA;
+    background-color: #eff8e2;
     opacity: 1;
     margin: 0px;
     padding: 0px;
 }
 
-.wrepper {
-    width: 1170px;
+.wrapper {
+    width: 80% ;
     margin: 0 auto;
     overflow-x: hidden;
 }
@@ -69,15 +77,18 @@ body {
 /* Начало header */
 
 .header {
-    height: 85px;
-    background-color: #3700B3;
+    height: 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    background-color: #23022e;
 }
 
 .header__flex {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 13px;
 }
 
 .logo {
@@ -117,19 +128,18 @@ body {
 .sign__in {
     width: 115px;
     height: 40px;
-    background-color: #04DAC6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #573280;
+    border-radius: 8px;
     transition: all 0.5s ease;
 }
 
-.sign__in__botton {
+.sign__in__button {
     font-family: 'Roboto', sans-serif;
-    font-style: normal;
     font-weight: 500;
     font-size: 18px;
-    line-height: 21px;
-    display: flex;
-    align-items: center;
-    text-align: center;
     text-decoration-line: underline;
     text-transform: uppercase;
     text-decoration: none;
@@ -147,7 +157,7 @@ body {
 
 /* Начало intro */
 
-.intro {
+.content {
     margin-top: 80px;
 }
 
@@ -156,15 +166,32 @@ body {
     justify-content: space-between;
 }
 
+.right__intro {
+    width: 60%;
+}
+
+.my_applications_title {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 28px;
+    padding: 0px 120px;
+    margin-top: 10px;
+}
+
+.applications_list {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
 h1 {
     font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 36px;
     line-height: 42px;
-    display: flex;
-    align-items: center;
-    text-align: center;
     text-decoration-line: underline;
     text-transform: uppercase;
     text-decoration: none;
@@ -174,15 +201,17 @@ h1 {
 }
 
 .my__applications{
-    width: 600px;
+    width: 85%;
     margin-top: 30px;
-    background-color: #D8D8D8;
-    margin-bottom: 30px;
+    background-color: rgba(206, 207, 199, .5);
+    border-radius: 10px;
 }
 
 .my__applications__flex{
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
 }
 
 h2{
@@ -205,12 +234,12 @@ h2{
 
 .button__my__applications{
     width: 150px;
-    height: 20px;
-    background-color: #04DAC6;
+    height: 30px;
+    background-color: rgba(173, 168, 182, .5);
     font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 14px;
     line-height: 42px;
     display: flex;
     align-items: center;
@@ -221,17 +250,17 @@ h2{
     color: #000;
     border: 0px;
     padding: 15px;
-    margin: 30px;
     transition: all 0.5s ease;
     justify-content: center;
+    border-radius: 5px;
 }
 
 .button__my__applications:hover{
-    background-color: #03d1bc;
+    background-color: rgba(173, 168, 182, .8);
 }
 
 .left__intro{
-    width: 400px;
+    width: 35%;
 }
 
 .left__intro__text{
@@ -243,19 +272,49 @@ h2{
 }
 
 .all__applications{
-    border: 3px solid #04DAC6;
-    width: 400px;
+    width: 80%;
     height: 50px;
+    background-color: rgba(173, 168, 182, .5);
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 42px;
     display: flex;
-    margin-bottom: 30px;
+    align-items: center;
+    text-align: center;
+    text-decoration-line: underline;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 0px;
+    padding: 10px;
+    transition: all 0.5s ease;
+    justify-content: center;    
+    display: flex;
+    margin-bottom: 15px;
+    border-radius: 10px;
 }
 
-.ellipse{
-    background-color: #FF0000;
+.all__applications:hover {
+    background-color: rgba(173, 168, 182, 1);
+}
+
+.ellipse_red {
+    background-color: #DE3163;
     width: 23px;
     height: 23px;
     border-radius: 100px;
     margin: 10px 15px;
+    border: 1px solid #23022e;
+}
+
+.ellipse_green {
+    background-color: #00ff7f;
+    width: 23px;
+    height: 23px;
+    border-radius: 100px;
+    margin: 10px 15px;
+    border: 1px solid #23022e;
 }
 
 .all__applications__text{
@@ -264,11 +323,12 @@ h2{
 }
 
 .all__applications__information{
-    background-color: #3700B3;
-    width: 400px;
+    background-color: rgba(173, 168, 182, .4);;
+    width: 80%;
     height: 360px;
     margin-bottom: 30px;
     padding: 30px;
+    border-radius: 10px;
 }
 
 p{
@@ -280,13 +340,13 @@ p{
     display: flex;
     align-items: center;
 
-    color: #fff;
+    color: gray;
 
     margin-bottom: 10px;
 }
 
 span{
-    color: #B0AFAF; 
+    color: rgba(87, 50, 128, .7); 
 }
 
 .all__application__footer{
