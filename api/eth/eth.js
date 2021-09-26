@@ -1,6 +1,14 @@
 const Web3 = require("web3");
 
-const web3 = new Web3(new Web3.providers.HttpProvider(process.env.ETH_URL));
+const options = {
+  transactionConfirmationBlocks: 1,
+};
+
+const web3 = new Web3(
+  new Web3.providers.HttpProvider(process.env.ETH_URL),
+  null,
+  options
+);
 
 web3.eth
   .getBalance("0x9C82ECfcce575A2AED70b203Da009e4d50F77DBc")

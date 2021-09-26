@@ -41,29 +41,60 @@ const start = async (address, user_addr, user_pk, input) => {
     const privateKey = Buffer.from(user_pk.slice(2), "hex");
 
     const rawTX = {
+      nonce: web3.utils.toHex(await web3.eth.getTransactionCount(user_addr)),
       data: contract.methods.start(input).encodeABI(),
       from: user_addr,
+      to: address,
       gasLimit: 0x47b760,
       gasPrice: "0xbebc200",
+      chain: "ropsen",
+      hardfork: "london",
     };
 
-    const commmon = new Common({ chain: "ropsten", hardfork: "petersburg" });
+    const commmon = new Common({ chain: "ropsten" });
     const tx = Transaction.fromTxData(rawTX, { commmon });
-    tx.sign(privateKey);
 
-    var serializedTx = tx.serialize();
+    const signed = await web3.eth.accounts.signTransaction(rawTX, user_pk);
 
-    const res = await web3.eth.sendSignedTransaction(
-      "0x" + serializedTx.toString("hex")
-    );
+    // var serializedTx = signed.serialize();
 
-    return res.contractAddress;
+    const res = await web3.eth
+      .sendSignedTransaction(
+        // "0x" + serializedTx.toString("hex")
+        signed.rawTransaction
+      )
+      .once("receipt", (receipt) => {
+        return receipt.transactionHash;
+      })
+      .on("error", (err) => {
+        console.log(err);
+      });
+
+    return res.transactionHash;
   } catch (error) {
     throw new Error("start application: " + error);
+  }
+};
+
+const getAllUpdates = async (address) => {
+  try {
+    const contract = new web3.eth.Contract(applicationContractABI, address);
+    const events = await contract.getPastEvents("Update");
+
+    let updates = [];
+
+    events.forEach((event) => {
+      updates.push(event.returnValues);
+    });
+
+    return updates;
+  } catch (error) {
+    throw new Error("get all updates: " + error);
   }
 };
 
 module.exports = {
   create,
   start,
+  getAllUpdates,
 };

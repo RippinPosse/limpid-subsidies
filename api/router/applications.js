@@ -43,7 +43,7 @@ router.route("/new").post(auth, async (req, res) => {
     const savedDocs = await Documents.save(user.id, req.body.input.documents);
     const id = await Applications.getLastID();
 
-    docs = [];
+    let docs = [];
     savedDocs.forEach((doc) => {
       docs.push({
         id: doc.id,
@@ -77,11 +77,32 @@ router.route("/new").post(auth, async (req, res) => {
       input
     );
 
+    console.log(tx);
+
     return res.status(200).json({
       id: savedApplication.id,
       address: savedApplication.address,
       tx: tx,
     });
+  } catch (error) {
+    throw new Error("new application: " + error);
+  }
+});
+
+router.route("/:id").get(auth, async (req, res) => {
+  try {
+    const application = await Applications.findById(req.params.id);
+    if (!application) {
+      return res.status(404).json({ message: "not found" });
+    }
+
+    if (!application.public) {
+      return res.status(403).json({ message: "application is not public" });
+    }
+
+    const updates = await ethApplications.getAllUpdates(application.address);
+
+    return res.status(200).json({ id: application.id, updates: updates });
   } catch (error) {
     throw new Error("get account: " + error);
   }

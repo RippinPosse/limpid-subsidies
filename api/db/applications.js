@@ -15,6 +15,21 @@ const save = async (application) => {
   }
 };
 
+const findById = async (id) => {
+  try {
+    const query = {
+      text: "SELECT * FROM applications WHERE id = $1",
+      values: [id],
+    };
+
+    const res = await db.query(query);
+
+    return res.rows[0];
+  } catch (error) {
+    throw new Error("find application: " + error);
+  }
+};
+
 const getLastID = async () => {
   try {
     const query = "SELECT COALESCE(MAX(id), 0) as id FROM applications";
@@ -30,4 +45,5 @@ const getLastID = async () => {
 module.exports = {
   save,
   getLastID,
+  findById,
 };
